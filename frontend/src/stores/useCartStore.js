@@ -71,6 +71,9 @@ export const useCartStore = create((set, get) => ({
 	},
 
 	removeFromCart: async (productId) => {
+		// becareful here: delete from CART, not the actual product from web site
+		// get it from req.body, NOT from the productId endpoint
+		// THIS IS WRONG! await axios.delete(`/cart/${productId}`) 
 		await axios.delete(`/cart`, { data: { productId } });
 		set((prevState) => ({ cart: prevState.cart.filter((item) => item._id !== productId) }));
 		get().calculateTotals();
@@ -81,7 +84,7 @@ export const useCartStore = create((set, get) => ({
 			get().removeFromCart(productId);
 			return;
 		}
-
+ 
 		await axios.put(`/cart/${productId}`, { quantity });
 		set((prevState) => ({
 			cart: prevState.cart.map((item) => (item._id === productId ? { ...item, quantity } : item)),

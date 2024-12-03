@@ -4,7 +4,7 @@ import Product from "../models/product.model.js";
 
 export const getAllProducts = async (req, res) => {
 	try {
-		const products = await Product.find({}); // find all products
+		const products = await Product.find({}); // find all products. Can just use 'find()'
 		res.json({ products });
 	} catch (error) {
 		console.log("Error in getAllProducts controller", error.message);
@@ -53,7 +53,7 @@ export const createProduct = async (req, res) => {
 			name,
 			description,
 			price,
-			// 'secure_url' is how cloudinary stores images. If empty, then use an empty string
+			// 'secure_url' is how cloudinary stores images. If yes then use it, if empty, then use an empty string
 			image: cloudinaryResponse?.secure_url ? cloudinaryResponse.secure_url : "",
 			category,
 		});

@@ -3,7 +3,8 @@ import { motion } from "framer-motion";
 import { PlusCircle, Upload, Loader } from "lucide-react";
 import { useProductStore } from "../stores/useProductStore";
 
-const categories = ["jeans", "t-shirts", "shoes", "glasses", "jackets", "suits", "bags"];
+// this is for the product selector in the form
+const categories = ["burgers", "sandwiches", "pizzas", "burritos", "sides", "drinks", "gift-cards"];
 
 const CreateProductForm = () => {
 	const [newProduct, setNewProduct] = useState({
@@ -21,6 +22,7 @@ const CreateProductForm = () => {
     
 		try {
 			await createProduct(newProduct);
+			// clear input fields on form
 			setNewProduct({ name: "", description: "", price: "", category: "", image: "" });
 		} catch {
 			console.log("error creating a product");
@@ -36,7 +38,7 @@ const CreateProductForm = () => {
 				setNewProduct({ ...newProduct, image: reader.result });
 			};
 
-			reader.readAsDataURL(file); // base64
+			reader.readAsDataURL(file); // convert to base64 format, which is the  string representation of image
 		}
 	};
 
@@ -135,6 +137,7 @@ const CreateProductForm = () => {
 						<Upload className='h-5 w-5 inline-block mr-2' />
 						Upload Image
 					</label>
+					{/* if sucess, display message 'Image uploaded */}
 					{newProduct.image && <span className='ml-3 text-sm text-gray-400'>Image uploaded </span>}
 				</div>
 

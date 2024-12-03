@@ -23,7 +23,7 @@ const couponSchema = new mongoose.Schema(
 		},
 		userId: {
 			type: mongoose.Schema.Types.ObjectId,
-			ref: "User",
+			ref: "User", // reference the User model
 			required: true,
 			unique: true,
 		},

@@ -27,7 +27,7 @@ const userSchema = new mongoose.Schema(
 				},
 				product: {
 					type: mongoose.Schema.Types.ObjectId,
-					ref: "Product",
+					ref: "Product", // reference the Product model
 				},
 			},
 		],
@@ -42,7 +42,7 @@ const userSchema = new mongoose.Schema(
 	}
 );
 
-// Pre-save hook to hash password before saving to database
+// Pre = run this function (hash password) before saving to database
 userSchema.pre("save", async function (next) {
 	if (!this.isModified("password")) return next();
 

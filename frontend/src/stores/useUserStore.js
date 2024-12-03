@@ -3,7 +3,7 @@ import axios from "../lib/axios";
 import { toast } from "react-hot-toast";
 
 export const useUserStore = create((set, get) => ({
-	user: null,
+	user: null, //this will have a value once user signs up or logs in
 	loading: false,
 	checkingAuth: true,
 

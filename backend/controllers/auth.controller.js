@@ -19,6 +19,7 @@ const storeRefreshToken = async (userId, refreshToken) => {
 };
 
 const setCookies = (res, accessToken, refreshToken) => {
+	// key = "accessToken", value = accessToken. Saves in redis
 	res.cookie("accessToken", accessToken, {
 		httpOnly: true, // prevent XSS attacks, cross site scripting attack
 		secure: process.env.NODE_ENV === "production", // becomes https during production
@@ -51,6 +52,7 @@ export const signup = async (req, res) => {
 
 		setCookies(res, accessToken, refreshToken);
 
+		// reference Sahand's technique to send the 'rest' without the password
 		res.status(201).json({
 			_id: user._id,
 			name: user.name,

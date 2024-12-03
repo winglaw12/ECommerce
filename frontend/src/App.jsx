@@ -19,13 +19,14 @@ import PurchaseCancelPage from "./pages/PurchaseCancelPage";
 function App() {
 	const { user, checkAuth, checkingAuth } = useUserStore();
 	const { getCartItems } = useCartStore();
+
 	useEffect(() => {
 		checkAuth();
 	}, [checkAuth]);
 
+	// get number of items in  cart
 	useEffect(() => {
 		if (!user) return;
-
 		getCartItems();
 	}, [getCartItems, user]);
 

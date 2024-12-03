@@ -23,6 +23,7 @@ const CategoryPage = () => {
 					animate={{ opacity: 1, y: 0 }}
 					transition={{ duration: 0.8 }}
 				>
+					{/* Capitalize category */}
 					{category.charAt(0).toUpperCase() + category.slice(1)}
 				</motion.h1>
 
@@ -38,6 +39,7 @@ const CategoryPage = () => {
 						</h2>
 					)}
 
+					{/* Show each product card*/}
 					{products?.map((product) => (
 						<ProductCard key={product._id} product={product} />
 					))}
